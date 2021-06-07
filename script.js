@@ -10,29 +10,52 @@ const week = [
   'Суббота',
 ];
 
-const getTodayDate = () => {
-  let date = new Date();
-  return date.getDay();
-};
+const arrMonths = [
+  'января',
+  'февраля',
+  'марта',
+  'апреля',
+  'мая',
+  'июня',
+  'июля',
+  'августа',
+  'сентября',
+  'октября',
+  'ноября',
+  'декабря',
+]
 
-  const outputHtmlDay = (arr) => {
-    const today = getTodayDate();
-    const out = document.querySelector('.out');
-    const listElem = document.createElement('ul');
+let getTodayDate = () => new Date();
 
-    out.append(listElem);
+function numWord(value, words){  
+	value = Math.abs(value) % 100; 
+	var num = value % 10;
+	if(value > 10 && value < 20) return words[2]; 
+	if(num > 1 && num < 5) return words[1];
+	if(num == 1) return words[0]; 
+	return words[2];
+}
 
-    arr.forEach((item, index) => {
-      let itemListElem = document.createElement('li');
+const weekDay = document.querySelector('.week-day'),
+  numberMonth = document.querySelector('.number-month'),
+  month = document.querySelector('.month'),
+  year = document.querySelector('.year'),
+  hour = document.querySelector('.hour'),
+  hourText = document.querySelector('.hour-text'),
+  minute = document.querySelector('.minute'),
+  minuteText = document.querySelector('.minute-text'),  
+  second = document.querySelector('.second'),
+  secondText = document.querySelector('.second-text');
 
-      if (index === today) itemListElem.style.fontWeight = 'bold';
+let dateDay = getTodayDate();
 
-      if (index === 0 || index === 6) itemListElem.style.fontStyle = 'italic';
-
-      itemListElem.textContent = item;
-
-      listElem.append(itemListElem);
-    });
-};
-
-outputHtmlDay(week);
+weekDay.textContent = week[dateDay.getDay()];
+numberMonth.textContent = dateDay.getDate();
+month.textContent = arrMonths[dateDay.getMonth()];
+year.textContent = dateDay.getFullYear();
+hour.textContent = dateDay.getHours();
+hourText.textContent = numWord(dateDay.getHours(), ['час', 'часа', 'часов',]);
+minute.textContent = dateDay.getMinutes();
+minuteText.textContent = numWord(dateDay.getMinutes(), ['минута', 'минуты', 'минут',]);
+second.textContent = dateDay.getSeconds();
+secondText.textContent = numWord(dateDay.getSeconds(), ['секунда', 'секунды', 'секунд',])
