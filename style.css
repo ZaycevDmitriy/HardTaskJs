@@ -1,0 +1,23 @@
+body {
+    background-color: #008d3d;
+    font-family: sans-serif;
+    font-size: 20px;
+    color: #ffffff;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 400px;
+    margin: 0 auto;
+    padding-top: 100px;
+}
+
+#change {
+    padding: 20px 30px;
+    font-size: inherit;
+    font-weight: bold;
+    color: #008d3d;
+}
